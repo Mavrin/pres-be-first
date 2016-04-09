@@ -32,7 +32,7 @@
 
 	<p><a href="https://twitter.com/krivlenia">Константин Кривленя</a></p>
 
-	<p>Компания <a href="http://www.targetprocess.com">Taucraft</a></p>
+	<p>Компания <a href="http://www.targetprocess.com">Targetprocess</a></p>
 </header>
 <section class="slide">
 	<div>
@@ -41,6 +41,9 @@
 </section>
 <section style="background: black" class="slide">
 		<img class="cover" width="75%" src="pictures/TED_logo%20(1).png" alt="TED">
+</section>
+<section style="background: black" class="slide">
+	<img class="cover" width="75%" src="pictures/ted-bear.png" alt="TED">
 </section>
 <section class="slide">
 	<div>
@@ -251,25 +254,75 @@ module.exports = function(grunt) {
 	</div>
 </section>
 <section class="slide">
-	POSTcss
+	<div class="">
+		Ссылки на подкаст Контора.
+		http://tohtml.it/
+	</div>
+</section>
+<section style="background-image: url(pictures/alchemy.jpg); background-size: cover" class="slide">
+	<img class="cover" width="500px" src="pictures/postcss.svg" >
+	<h2 style="color: white">PostCSS</h2>
 </section>
 <section class="slide">
-	rework
+	<img class="cover" width="500px" src="pictures/compass-logo.png" >
 </section>
 <section class="slide">
-	twitter discuss
+	<h2 class="shout">Rework</h2>
 </section>
 <section class="slide">
-	parser with detail
+	<h2>PostCSS это не</h2>
+	<ul>
+		<li class="next">CSS preprocessor</li>
+		<li class="next">CSS postprocessor</li>
+		<li class="next">CSS linter</li>
+		<li class="next">CSS minifier</li>
+	</ul>
 </section>
 <section class="slide">
-	parser like babel
+	<h2 style="font-size: 50px" class="shout">PostCSS это инструмент трансформации CSS с помощью JavaScript</h2>
 </section>
 <section class="slide">
-	it just visitor
+	<h2 style="font-size: 100px"  class="shout">#СитникДавайЕще</h2>
 </section>
 <section class="slide">
-	tauCharts plugins
+	<h2 style="font-size: 100px" class="shout">Проблема PostCSS нет детального парсинга</h2>
+</section>
+<section class="slide">
+	<h2 style="font-size: 80px" class="shout">PostCSS 6.0 <br> c новым <a href="https://github.com/postcss/postcss/issues/754">парсером</a> похожим на Babel</h2>
+</section>
+<section style="background: #f5da55" class="slide">
+	<img src="pictures/logo.svg" alt="babel">
+</section>
+<section style="padding: 50px" class="slide">
+	<pre>
+	<code class="javascript">
+module.exports = leftpad;
+function leftpad (str, len, ch) {
+  str = String(str);
+  var i = -1;
+  if (!ch && ch !== 0) ch = ' ';
+  len = len - str.length;
+  while (++i < len) {
+    str = ch + str;
+  }
+  return str;
+}
+	</code>
+	</pre>
+</section>
+<section class="slide">
+	<h2 class="shout">
+		<a  href="https://github.com/lahmatiy/component-inspector">Component inspector</a>
+	</h2>
+</section>
+<section class="slide">
+	<img class="cover" src="pictures/component-inspector.gif" alt="component-inspector">
+</section>
+<section class="slide">
+	<h2 class="shout"><a href="https://www.youtube.com/watch?v=aMP6j6um4Ss&ab_channel=FrontTalksConference">Инструментирование кода</a></h2>
+</section>
+<section style="background-image: url(pictures/main-bg.svg)" class="slide">
+	<img class="cover" src="pictures/logo-big-taucharts.png" alt="">
 </section>
 <section class="slide">
 	css modules
