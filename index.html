@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Будь первым</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="shower/themes/material/styles/screen-16x10.css">
+	<link rel="stylesheet" href="highlightjs/styles/tomorrow.css"/>
+	<style>
+		.slide:after {
+			content: '';
+		}
+		.slide h2.shout {
+			text-align: center;
+			padding-left: 0;
+		}
+	</style>
+	<style>
+		.logos {
+			display: flex;
+		}
+		.logos > img {
+			flex-grow: 1;
+			flex-basis: 300px;
+		}
+	</style>
+</head>
+<body class="shower list">
+<header class="caption">
+	<h1>Будь первым</h1>
+
+	<p><a href="https://twitter.com/krivlenia">Константин Кривленя</a></p>
+
+	<p>Компания <a href="http://www.targetprocess.com">Targetprocess</a></p>
+</header>
+<section class="slide">
+	<div>
+		<h2 class="shout"><a target="_blank" href="https://goo.gl/TCtmLl">goo.gl/TCtmLl</a></h2>
+	</div>
+</section>
+<section style="background: black" class="slide">
+		<img class="cover" width="75%" src="pictures/TED_logo%20(1).png" alt="TED">
+</section>
+<section style="background: black" class="slide">
+	<img class="cover" width="75%" src="pictures/ted-bear.png" alt="TED">
+</section>
+<section class="slide">
+	<div>
+		<h2 class="shout">Ideas worth spreading</h2>
+	</div>
+</section>
+<section class="slide">
+	<div>
+		<h2>Немного о себе</h2>
+		<div style="display: flex">
+			<div style="flex-shrink: 1"><img style="padding-right: 20px" src="pictures/64lMqg7R6g4.jpg" alt=""/></div>
+			<div  style="flex-shrink: 2">Зовут меня Константин Кривленя. <br/>Разработчик в <a href="http://crew.taucraft.com/">Taucraft</a>.<br/>
+				Помогаю опенсорсной JavaScript-библиотеки чартов <a href="http://taucharts.com/">Taucharts</a>. <br/>
+				<a
+						style="background:url(pictures/twitter-bird-light-bgs.png) no-repeat;padding-left:40px;"
+						href="https://twitter.com/Krivlenia">Twitter (https://twitter.com/Krivlenia/)</a><br>
+				<a style="background:url(pictures/GitHub-Mark-32px.png) no-repeat;background-size: contain;
+padding-left:40px;"
+				   href="https://github.com/Mavrin">Github (https://github.com/Mavrin/)</a><br>
+				<a style="background:url(pictures/habrahabr.png) center left no-repeat;padding-left:20px;"
+				   href="http://habrahabr.ru/users/mavrin/">Хабр (http://habrahabr.ru/users/mavrin/)</a><br></div>
+		</div>
+	</div>
+</section>
+<section style="padding: 50px" class="slide">
+	<pre>
+		<code style="height: 600px;line-height: 1.2;font-size: 16px" class="bash">
+#!/bin/bash
+# Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+# For licensing, see LICENSE.md or http://ckeditor.com/license
+
+# Build CKEditor using the default settings (and build.js).
+
+set -e
+
+echo "CKBuilder - Builds a release version of ckeditor-dev."
+echo ""
+
+CKBUILDER_VERSION="2.3.0"
+CKBUILDER_URL="http://download.cksource.com/CKBuilder/$CKBUILDER_VERSION/ckbuilder.jar"
+
+PROGNAME=$(basename $0)
+MSG_UPDATE_FAILED="Warning: The attempt to update ckbuilder.jar failed. The existing file will be used."
+MSG_DOWNLOAD_FAILED="It was not possible to download ckbuilder.jar."
+ARGS=" $@ "
+
+function error_exit
+{
+	echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+	exit 1
+}
+
+function command_exists
+{
+	command -v "$1" > /dev/null 2>&1;
+}
+
+# Move to the script directory.
+cd $(dirname $0)
+
+# Download/update ckbuilder.jar.
+mkdir -p ckbuilder/$CKBUILDER_VERSION
+cd ckbuilder/$CKBUILDER_VERSION
+if [ -f ckbuilder.jar ]; then
+	echo "Checking/Updating CKBuilder..."
+	if command_exists curl ; then
+	curl -O -R -z ckbuilder.jar $CKBUILDER_URL || echo "$MSG_UPDATE_FAILED"
+	else
+	wget -N $CKBUILDER_URL || echo "$MSG_UPDATE_FAILED"
+	fi
+else
+	echo "Downloading CKBuilder..."
+	if command_exists curl ; then
+	curl -O -R $CKBUILDER_URL || error_exit "$MSG_DOWNLOAD_FAILED"
+	else
+	wget -N $CKBUILDER_URL || error_exit "$MSG_DOWNLOAD_FAILED"
+	fi
+fi
+cd ../..
+
+# Run the builder.
+echo ""
+echo "Starting CKBuilder..."
+
+JAVA_ARGS=${ARGS// -t / } # Remove -t from args.
+
+VERSION="4.5.9 DEV"
+REVISION=$(git rev-parse --verify --short HEAD)
+SEMVER_REGEX="^([0-9]+)\.([0-9]+)\.([0-9]+)(\-[0-9A-Za-z-]+)?(\+[0-9A-Za-z-]+)?$"
+
+# Get version number from tag (if available and follows semantic versioning principles).
+# Use 2>/dev/null to block "fatal: no tag exactly matches", true is needed because of "set -e".
+TAG=$(git symbolic-ref -q --short HEAD || git describe --tags --exact-match 2>/dev/null) || true
+# "Git Bash" does not support regular expressions.
+if echo $TAG | grep -E "$SEMVER_REGEX" > /dev/null
+then
+	echo "Setting version to $TAG"
+	VERSION=$TAG
+fi
+
+java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release $JAVA_ARGS --version="$VERSION" --revision="$REVISION" --overwrite
+
+# Copy and build tests.
+if [[ "$ARGS" == *\ \-t\ * ]]; then
+	echo ""
+	echo "Copying tests..."
+
+	cp -r ../../tests release/ckeditor/tests
+	cp -r ../../package.json release/ckeditor/package.json
+	cp -r ../../bender.js release/ckeditor/bender.js
+
+	echo ""
+	echo "Installing tests..."
+
+	(cd release/ckeditor &&	npm install && bender init)
+fi
+
+echo ""
+echo "Release created in the \"release\" directory."
+		</code>
+	</pre>
+</section>
+
+<section style="padding: 50px" class="slide">
+	<pre>
+		<code style="font-size: 18px;line-height: 1.2" class="javascript">
+/* jshint node: true */
+
+'use strict';
+
+const gulp = require( 'gulp' );
+
+const config = {
+	ROOT_DIR: '.',
+	BUILD_DIR: 'build',
+	WORKSPACE_DIR: '..',
+
+	// Files ignored by jshint and jscs tasks. Files from .
+	//		gitignore will be added automatically during tasks execution.
+	IGNORED_FILES: [
+		'src/lib/**'
+	]
+};
+
+require( './dev/tasks/build/tasks' )( config );
+require( './dev/tasks/dev/tasks' )( config );
+require( './dev/tasks/lint/tasks' )( config );
+require( './dev/tasks/docs/tasks' )( config );
+
+gulp.task( 'default', [ 'build' ] );
+gulp.task( 'pre-commit', [ 'lint-staged' ] );
+		</code>
+	</pre>
+</section>
+<section style="padding: 50px" class="slide">
+	<pre >
+		<code style="font-size: 18px;line-height: 1.2" class="javascript">
+module.exports = function(grunt) {
+
+  grunt.initConfig({
+    jshint: {
+      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      options: {
+        globals: {
+          jQuery: true
+        }
+      }
+    },
+    watch: {
+      files: ['<%= jshint.files %>'],
+      tasks: ['jshint']
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('default', ['jshint']);
+
+};
+		</code>
+	</pre>
+</section>
+<section  class="slide">
+	<pre>
+		<code style="line-height: 1.2;overflow: hidden" class="json">
+{
+...
+"scripts": {
+    "pretest": "npm run lint && npm run beautify-lint",
+    "test": "mocha --harmony --full-trace --check-leaks",
+    "travis": "npm run cover -- --report lcovonly",
+    "lint": "eslint lib bin hot",
+    "beautify-lint": "beautify-lint lib/**.js hot/**.js bin/**.js benchmark/*.js test/*.js",
+    "beautify": "beautify-rewrite lib/**.js hot/**.js bin/**.js benchmark/*.js test/*.js",
+    "postcover": "npm run lint && npm run beautify-lint",
+    "cover": "istanbul cover -x *.runtime.js node_modules/mocha/bin/_mocha",
+    "publish-patch": "npm run lint && npm run beautify-lint && mocha && npm version patch && git push && git push --tags && npm publish"
+  }
+}
+		</code>
+	</pre>
+</section>
+<section class="slide">
+	<div class="cover">
+		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Day 1: Wow, NPM scripts are so much simpler.<br><br>Day 2: Moving them into their own js file for readability.<br><br>Day 3: I&#39;ve reinvented Gulp.</p>&mdash; Jake Archibald (@jaffathecake) <a href="https://twitter.com/jaffathecake/status/700320306053935104">February 18, 2016</a></blockquote>
+		<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+	</div>
+</section>
+<section class="slide">
+	<div class="">
+		Ссылки на подкаст Контора.
+		http://tohtml.it/
+	</div>
+</section>
+<section style="background-image: url(pictures/alchemy.jpg); background-size: cover" class="slide">
+	<img class="cover" width="500px" src="pictures/postcss.svg" >
+	<h2 style="color: white">PostCSS</h2>
+</section>
+<section class="slide">
+	<img class="cover" width="500px" src="pictures/compass-logo.png" >
+</section>
+<section class="slide">
+	<h2 class="shout">Rework</h2>
+</section>
+<section class="slide">
+	<h2>PostCSS это не</h2>
+	<ul>
+		<li class="next">CSS preprocessor</li>
+		<li class="next">CSS postprocessor</li>
+		<li class="next">CSS linter</li>
+		<li class="next">CSS minifier</li>
+	</ul>
+</section>
+<section class="slide">
+	<h2 style="font-size: 50px" class="shout">PostCSS это инструмент трансформации CSS с помощью JavaScript</h2>
+</section>
+<section class="slide">
+	<h2 style="font-size: 100px"  class="shout">#СитникДавайЕще</h2>
+</section>
+<section class="slide">
+	<h2 style="font-size: 100px" class="shout">Проблема PostCSS нет детального парсинга</h2>
+</section>
+<section class="slide">
+	<h2 style="font-size: 80px" class="shout">PostCSS 6.0 <br> c новым <a href="https://github.com/postcss/postcss/issues/754">парсером</a> похожим на Babel</h2>
+</section>
+<section style="background: #f5da55" class="slide">
+	<img src="pictures/logo.svg" alt="babel">
+</section>
+<section style="padding: 50px" class="slide">
+	<pre>
+	<code class="javascript">
+module.exports = leftpad;
+function leftpad (str, len, ch) {
+  str = String(str);
+  var i = -1;
+  if (!ch && ch !== 0) ch = ' ';
+  len = len - str.length;
+  while (++i < len) {
+    str = ch + str;
+  }
+  return str;
+}
+	</code>
+	</pre>
+</section>
+<section class="slide">
+	<h2 class="shout">
+		<a  href="https://github.com/lahmatiy/component-inspector">Component inspector</a>
+	</h2>
+</section>
+<section class="slide">
+	<img class="cover" src="pictures/component-inspector.gif" alt="component-inspector">
+</section>
+<section class="slide">
+	<h2 class="shout"><a href="https://www.youtube.com/watch?v=aMP6j6um4Ss&ab_channel=FrontTalksConference">Инструментирование кода</a></h2>
+</section>
+<section style="background-image: url(pictures/main-bg.svg)" class="slide">
+	<img class="cover" src="pictures/logo-big-taucharts.png" alt="">
+</section>
+<section class="slide">
+	css modules
+</section>
+<section class="slide">
+	js in css
+</section>
+<section class="slide">
+	http://bibliography.selflanguage.org/_static/implementation.pdf
+	https://developers.google.com/v8/design
+	v8
+</section>
+<section class="slide">
+	Redux
+</section>
+<section class="slide">
+	ELM
+</section>
+<section class="slide">
+	CQRS
+</section>
+<section class="slide">
+	Event Sourcing
+</section>
+<section class="slide">
+	saga
+</section>
+<section class="slide">
+	Cyclejs
+</section>
+<section class="slide">
+	Reactive programming
+</section>
+<section class="slide">
+	meteor
+</section>
+<section class="slide">
+	isomorphic js
+</section>
+<section class="slide">
+	Angular
+</section>
+<section class="slide">
+	React, polymer
+</section>
+<section class="slide">
+	Html
+</section>
+<section class="slide">
+	Form
+</section>
+<section class="slide">
+	Basisjs
+</section>
+<section class="slide">
+	<h2 class="shout">Вопросы?</h2>
+</section>
+<!--
+    To hide progress bar from entire presentation
+    just remove “progress” element.
+    -->
+<div class="progress"></div>
+<script src="shower/shower.min.js"></script>
+<script src="highlightjs/highlight.pack.min.js"></script>
+<script>
+	hljs.initHighlighting();
+</script>
+<!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>
