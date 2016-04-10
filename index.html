@@ -7,10 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="shower/themes/material/styles/screen-16x10.css">
 	<link rel="stylesheet" href="highlightjs/styles/tomorrow.css"/>
+	<link rel="stylesheet" href="taucharts/build/production/tauCharts.min.css">
 	<style>
 		.slide:after {
 			content: '';
 		}
+
 		.slide h2.shout {
 			text-align: center;
 			padding-left: 0;
@@ -20,6 +22,7 @@
 		.logos {
 			display: flex;
 		}
+
 		.logos > img {
 			flex-grow: 1;
 			flex-basis: 300px;
@@ -40,7 +43,7 @@
 	</div>
 </section>
 <section style="background: black" class="slide">
-		<img class="cover" width="75%" src="pictures/TED_logo%20(1).png" alt="TED">
+	<img class="cover" width="75%" src="pictures/TED_logo%20(1).png" alt="TED">
 </section>
 <section style="background: black" class="slide">
 	<img class="cover" width="75%" src="pictures/ted-bear.png" alt="TED">
@@ -55,7 +58,8 @@
 		<h2>Немного о себе</h2>
 		<div style="display: flex">
 			<div style="flex-shrink: 1"><img style="padding-right: 20px" src="pictures/64lMqg7R6g4.jpg" alt=""/></div>
-			<div  style="flex-shrink: 2">Зовут меня Константин Кривленя. <br/>Разработчик в <a href="http://crew.taucraft.com/">Taucraft</a>.<br/>
+			<div style="flex-shrink: 2">Зовут меня Константин Кривленя. <br/>Разработчик в <a
+					href="http://crew.taucraft.com/">Taucraft</a>.<br/>
 				Помогаю опенсорсной JavaScript-библиотеки чартов <a href="http://taucharts.com/">Taucharts</a>. <br/>
 				<a
 						style="background:url(pictures/twitter-bird-light-bgs.png) no-repeat;padding-left:40px;"
@@ -199,7 +203,7 @@ gulp.task( 'pre-commit', [ 'lint-staged' ] );
 	</pre>
 </section>
 <section style="padding: 50px" class="slide">
-	<pre >
+	<pre>
 		<code style="font-size: 18px;line-height: 1.2" class="javascript">
 module.exports = function(grunt) {
 
@@ -227,7 +231,7 @@ module.exports = function(grunt) {
 		</code>
 	</pre>
 </section>
-<section  class="slide">
+<section class="slide">
 	<pre>
 		<code style="line-height: 1.2;overflow: hidden" class="json">
 {
@@ -249,7 +253,10 @@ module.exports = function(grunt) {
 </section>
 <section class="slide">
 	<div class="cover">
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Day 1: Wow, NPM scripts are so much simpler.<br><br>Day 2: Moving them into their own js file for readability.<br><br>Day 3: I&#39;ve reinvented Gulp.</p>&mdash; Jake Archibald (@jaffathecake) <a href="https://twitter.com/jaffathecake/status/700320306053935104">February 18, 2016</a></blockquote>
+		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Day 1: Wow, NPM scripts are so much
+			simpler.<br><br>Day 2: Moving them into their own js file for readability.<br><br>Day 3: I&#39;ve reinvented
+			Gulp.</p>&mdash; Jake Archibald (@jaffathecake) <a
+				href="https://twitter.com/jaffathecake/status/700320306053935104">February 18, 2016</a></blockquote>
 		<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </section>
@@ -260,11 +267,11 @@ module.exports = function(grunt) {
 	</div>
 </section>
 <section style="background-image: url(pictures/alchemy.jpg); background-size: cover" class="slide">
-	<img class="cover" width="500px" src="pictures/postcss.svg" >
+	<img class="cover" width="500px" src="pictures/postcss.svg">
 	<h2 style="color: white">PostCSS</h2>
 </section>
 <section class="slide">
-	<img class="cover" width="500px" src="pictures/compass-logo.png" >
+	<img class="cover" width="500px" src="pictures/compass-logo.png">
 </section>
 <section class="slide">
 	<h2 class="shout">Rework</h2>
@@ -282,13 +289,14 @@ module.exports = function(grunt) {
 	<h2 style="font-size: 50px" class="shout">PostCSS это инструмент трансформации CSS с помощью JavaScript</h2>
 </section>
 <section class="slide">
-	<h2 style="font-size: 100px"  class="shout">#СитникДавайЕще</h2>
+	<h2 style="font-size: 100px" class="shout">#СитникДавайЕще</h2>
 </section>
 <section class="slide">
 	<h2 style="font-size: 100px" class="shout">Проблема PostCSS нет детального парсинга</h2>
 </section>
 <section class="slide">
-	<h2 style="font-size: 80px" class="shout">PostCSS 6.0 <br> c новым <a href="https://github.com/postcss/postcss/issues/754">парсером</a> похожим на Babel</h2>
+	<h2 style="font-size: 80px" class="shout">PostCSS 6.0 <br> c новым <a
+			href="https://github.com/postcss/postcss/issues/754">парсером</a> похожим на Babel</h2>
 </section>
 <section style="background: #f5da55" class="slide">
 	<img src="pictures/logo.svg" alt="babel">
@@ -312,17 +320,27 @@ function leftpad (str, len, ch) {
 </section>
 <section class="slide">
 	<h2 class="shout">
-		<a  href="https://github.com/lahmatiy/component-inspector">Component inspector</a>
+		<a href="https://github.com/lahmatiy/component-inspector">Component inspector</a>
 	</h2>
 </section>
 <section class="slide">
 	<img class="cover" src="pictures/component-inspector.gif" alt="component-inspector">
 </section>
 <section class="slide">
-	<h2 class="shout"><a href="https://www.youtube.com/watch?v=aMP6j6um4Ss&ab_channel=FrontTalksConference">Инструментирование кода</a></h2>
+	<h2 class="shout"><a href="https://www.youtube.com/watch?v=aMP6j6um4Ss&ab_channel=FrontTalksConference">Инструментирование
+		кода</a></h2>
 </section>
 <section style="background-image: url(pictures/main-bg.svg)" class="slide">
 	<img class="cover" src="pictures/logo-big-taucharts.png" alt="">
+</section>
+<section class="slide">
+	<h2>
+		Влияние количества пиратов на глобальное потепление
+	</h2>
+	<div id="chart"></div>
+</section>
+<section class="slide">
+	<img class="cover" src="pictures/grammar.jpg" alt="">
 </section>
 <section class="slide">
 	css modules
@@ -387,8 +405,51 @@ function leftpad (str, len, ch) {
 <div class="progress"></div>
 <script src="shower/shower.min.js"></script>
 <script src="highlightjs/highlight.pack.min.js"></script>
+<script src="underscore/underscore-min.js"></script>
+<script src="d3/d3.min.js"></script>
+<script src="taucharts/build/production/tauCharts.min.js"></script>
 <script>
 	hljs.initHighlighting();
+</script>
+<script>
+	var chart = new tauCharts.Chart({
+		data: [{
+			t: 14.2,
+			q: '35000'
+		},
+			{
+				t: 14.3,
+				q: '45000'
+			}, {
+				t: 14.6,
+				q: '20000'
+			},
+			{
+				t: 14.9,
+				q: '15000'
+			},
+			{
+				t: 15.3,
+				q: '5000'
+			},
+			{
+				t: 15.6,
+				q: '400'
+			},
+			{
+				t: 15.9,
+				q: '17'
+			}
+		],
+		guide: {
+			y: {min: 13, max: 16.5, nice: false, label: {text: 'Земная средняя температура (°C)'}},
+			x: {label: {text: 'Число пиратов примерно'}}
+		},
+		type: 'line',
+		x: 'q',
+		y: 't'
+	});
+	chart.renderTo('#chart', {width: 800, height: 270});
 </script>
 <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
 <!-- Photos by John Carey, fiftyfootshadows.net -->
