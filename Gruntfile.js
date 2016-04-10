@@ -60,7 +60,32 @@ module.exports = function (grunt) {
 						'highlight.pack.min.js'
 					],
 					dest: 'temp/pres/highlightjs/'
-				}]
+				}, {
+					expand: true,
+					cwd: 'node_modules/taucharts/',
+					src: [
+						'build/production/tauCharts.min.js',
+						'build/production/tauCharts.min.css'
+					],
+					dest: 'temp/pres/taucharts/'
+				},
+					{
+						expand: true,
+						cwd: 'node_modules/d3/',
+						src: [
+							'd3.min.js'
+						],
+						dest: 'temp/pres/d3/'
+					},
+					{
+						expand: true,
+						cwd: 'node_modules/underscore/',
+						src: [
+							'underscore-min.js'
+						],
+						dest: 'temp/pres/underscore/'
+					}
+				]
 			}
 		},
 		replace: {
@@ -76,7 +101,18 @@ module.exports = function (grunt) {
 				}, {
 					from: /(node_modules)\/highlightjs/g,
 					to: 'highlightjs'
-				}]
+				}, {
+					from: /(node_modules)\/taucharts/g,
+					to: 'taucharts'
+				},
+					{
+						from: /(node_modules)\/d3/g,
+						to: 'd3'
+					},{
+						from: /(node_modules)\/underscore/g,
+						to: 'underscore'
+					}
+				]
 			},
 			themes: {
 				src: 'temp/pres/shower/themes/*/index.html',
