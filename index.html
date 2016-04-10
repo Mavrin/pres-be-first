@@ -261,6 +261,11 @@ module.exports = function(grunt) {
 	</div>
 </section>
 <section class="slide">
+	<ul>
+		<li><a href="http://learn.javascript.ru/screencast/webpack">Webpack</a></li>
+		<li><a href="http://learn.javascript.ru/screencast/gulp">Gulp</a></li>
+		<li><a href="http://tohtml.it/post/103389617418/automation-video">Автоматизация для фронтендеров</a></li>
+	</ul>
 	<div class="">
 		Ссылки на подкаст Контора.
 		http://tohtml.it/
@@ -271,7 +276,7 @@ module.exports = function(grunt) {
 	<h2 style="color: white">PostCSS</h2>
 </section>
 <section class="slide">
-	<img class="cover" width="500px" src="pictures/compass-logo.png">
+	<img class="cover" width="500" src="pictures/compass-logo.png">
 </section>
 <section class="slide">
 	<h2 class="shout">Rework</h2>
@@ -343,15 +348,96 @@ function leftpad (str, len, ch) {
 	<img class="cover" src="pictures/grammar.jpg" alt="">
 </section>
 <section class="slide">
-	css modules
+	<img class="cover" src="pictures/css-modules-logo.png" alt="">
 </section>
 <section class="slide">
+	<pre>
+		<code class="javascript">
+import styles from "./style.css";
+// import { className } from "./style.css";
+
+element.innerHTML = '&lt;div class="' + styles.className + '"&gt;';
+		</code>
+	</pre>
+</section>
+<section class="slide">
+	<pre>
+		<code class="html">
+&lt;div class="className_116zl_1"&gt;
+		</code>
+	</pre>
+</section>
+<section class="slide">
+	<pre>
+		<code class="css">
+.className {
+  color: green;
+  background: red;
+}
+
+.otherClassName {
+  composes: className;
+  color: yellow;
+}
+		</code>
+	</pre>
+</section>
+<section class="slide">
+	<img class="cover" src="pictures/hack.jpg" alt="">
+</section>
+<section class="slide">
+	<pre>
+		<code class="html">
+&lt;b:isolate/&gt;
+&lt;b:style src="./cards-v2.css"/&gt;
+&lt;b:style src="./board_units.css"/&gt;
+&lt;div class="card" event-click="openView"&gt;
+    &lt;div class="section"&gt;
+        &lt;div class="unit unit_format_max"&gt;
+            &lt;div class="name"&gt;{name}&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+		</code>
+	</pre>
+</section>
+<section class="slide">
+	<pre>
+		<code class="html">
+&lt;div class="i27__card" event-click="openView"&gt;
+	&lt;div class="i27__section"&gt;
+		&lt;div class="i27__unit i27__unit_format_max"&gt;
+			&lt;div class="i27__name"&gt;test&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</code>
+	</pre>
+</section>
+<!--<section class="slide">
 	js in css
+</section>-->
+<section class="slide">
+	<img class="shout"  src="pictures/turt.jpg" alt="">
 </section>
 <section class="slide">
-	http://bibliography.selflanguage.org/_static/implementation.pdf
-	https://developers.google.com/v8/design
-	v8
+	<h2 class="shout">V8</h2>
+</section>
+<section class="slide">
+	<h2 >Fast Property Access</h2>
+	<img src="pictures/map_trans_c.png" alt="">
+</section>
+<section class="slide">
+	<h2 class="shout" style="font-size: 80px">Dynamic Machine Code Generation</h2>
+</section>
+<section class="slide">
+	<h2 class="shout" style="font-size: 80px">Efficient Garbage Collection</h2>
+</section>
+<section>
+	<ul>
+		<li ><a href="http://bibliography.selflanguage.org/_static/implementation.pdf">An Efficient Implementation of Self, a Dynamically-Typed Object-Oriented Language Based on Prototypes</a></li>
+		<li class="next"><a href="http://dl.acm.org/citation.cfm?id=800017.800542">Efficient implementation of the smalltalk-80 system</a></li>
+	</ul>
 </section>
 <section class="slide">
 	Redux
