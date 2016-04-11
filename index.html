@@ -266,10 +266,6 @@ module.exports = function(grunt) {
 		<li><a href="http://learn.javascript.ru/screencast/gulp">Gulp</a></li>
 		<li><a href="http://tohtml.it/post/103389617418/automation-video">Автоматизация для фронтендеров</a></li>
 	</ul>
-	<div class="">
-		Ссылки на подкаст Контора.
-		http://tohtml.it/
-	</div>
 </section>
 <section style="background-image: url(pictures/alchemy.jpg); background-size: cover" class="slide">
 	<img class="cover" width="500px" src="pictures/postcss.svg">
@@ -433,7 +429,7 @@ element.innerHTML = '&lt;div class="' + styles.className + '"&gt;';
 <section class="slide">
 	<h2 class="shout" style="font-size: 80px">Efficient Garbage Collection</h2>
 </section>
-<section>
+<section class="slide">
 	<ul>
 		<li><a href="https://developers.google.com/v8/design">Design Elements</a></li>
 		<li class="next"><a href="http://bibliography.selflanguage.org/_static/implementation.pdf">An Efficient
@@ -476,31 +472,139 @@ element.innerHTML = '&lt;div class="' + styles.className + '"&gt;';
 	saga
 </section>-->
 <section class="slide">
-	Reactive programming
+	<img src="pictures/cycle-schema.svg" alt="">
+</section>
+<section style="padding: 50px" class="slide">
+	<pre><code style="height: 600px;line-height: 1.2;font-size: 16px" class="javascript">
+const Cycle = require('@cycle/core');
+const {makeDOMDriver, div, button,p} = require('@cycle/dom');
+const {Observable} = require('rx');
+
+function main(sources) {
+  const decrement$ = sources.DOM
+    .select('.decrement').events('click').map(ev => -1);
+
+  const increment$ = sources.DOM
+    .select('.increment').events('click').map(ev => +1);
+
+  const action$ = Observable.merge(decrement$, increment$);
+  const count$ = action$.startWith(0).scan((x,y) => x+y);
+
+  const vtree$ = count$.map(count =>
+    div([
+      button('.decrement', 'Decrement'),
+      button('.increment', 'Increment'),
+      p('Counter: ' + count)
+    ])
+  );
+  return { DOM: vtree$ };
+}
+
+const sources = {
+  DOM: makeDOMDriver('.app')
+}
+
+Cycle.run(main, sources);
+	</code></pre>
+</section>
+<section style="background: black" class="slide">
+	<img style="width: 150px;left:100px" class="cover" src="pictures/Rx_Logo_S.png" alt="">
+	<h2 style="position: absolute;
+    top: 50%;
+    left: 450px;
+    z-index: -1;
+    color: white;
+    font-size: 120px;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    max-width: 100%;
+    max-height: 100%;">ReactiveX</h2>
 </section>
 <section class="slide">
-	meteor
+	<img class="cover" src="pictures/meteor.svg" alt="">
+</section>
+<section style="background: #222" class="slide">
+	<h2 style="color: #00d8ff">React</h2>
+	<img class="shout" style="width:415px" src="pictures/react.svg" alt="">
 </section>
 <section class="slide">
-	isomorphic js
+	<img class="shout" src="pictures/typicalApproach.png" alt="">
 </section>
 <section class="slide">
+	<img class="shout"  src="pictures/perfect.png" alt="">
+</section>
+<section class="slide">
+	<img class="shout"  src="pictures/muzhik-bleat_50599501_orig_.jpg" alt="">
+</section>
+<section class="slide">
+	<h2 class="shout">Проблема React</h2>
+</section>
+<section class="slide">
+	<h2 class="shout">Еще одна абстракция</h2>
+</section>
+<section style="padding: 50px" class="slide">
+	<pre><code class="javascript">
+var MyForm = React.createClass({
+  onSend: function(e) {
+    this.props.send()
+  },
+  render: function() {
+    return (
+		&lt;div onKeyDown={this.onSend}&gt;
+			&lt;Input type="text"&gt;
+			&lt;Button onClick={this.onSend}&gt;Ok&lt;/Button&gt;
+		&lt;/div&gt;
+    );
+  }
+});
+	</code></pre>
+</section>
+<section style="padding: 50px" class="slide">
+	<pre><code class="javascript">
+var MyForm = React.createClass({
+  onSend: function(e) {
+    this.props.send()
+  },
+  render: function() {
+    return (
+		&lt;form onSubmit={this.onSend}&gt;
+			&lt;Input type="text"&gt;
+			&lt;Button&gt;Ok&lt;/Button&gt;
+		&lt;/form&gt;
+    );
+  }
+});
+	</code></pre>
+</section>
+<section class="slide">
+	<h2 class="shout">Учите родные API</h2>
+</section>
+<section class="slide">
+	<h2>А где же?</h2>
+	<ul>
+		<li class="next">Ember</li>
+		<li class="next">Angular</li>
+		<li class="next">Angular2</li>
+		<li class="next">Мой любимый фреймворк</li>
+	</ul>
+</section>
+<section class="slide">
+	<h2 class="shout">Делитесь идеями</h2>
+</section>
+<section class="slide">
+	<h2 class="shout">Учите идеи</h2>
+</section>
+<!--<section class="slide">
 	Angular
 </section>
 <section class="slide">
 	React, polymer
-</section>
-<section class="slide">
-	Html
-</section>
-<section class="slide">
-	Form
-</section>
-<section class="slide">
-	Basisjs
-</section>
+</section>-->
 <section class="slide">
 	<h2 class="shout">Вопросы?</h2>
+</section>
+<section class="slide">
+	<h2 class="shout"><a href="http://basisjs.com/">Basisjs</a></h2>
 </section>
 <!--
     To hide progress bar from entire presentation
@@ -549,6 +653,7 @@ element.innerHTML = '&lt;div class="' + styles.className + '"&gt;';
 			y: {min: 13, max: 16.5, nice: false, label: {text: 'Земная средняя температура (°C)'}},
 			x: {label: {text: 'Число пиратов примерно'}}
 		},
+		autoResize: false,
 		type: 'line',
 		x: 'q',
 		y: 't'
