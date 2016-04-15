@@ -33,14 +33,17 @@
 <header class="caption">
 	<h1>Будь первым</h1>
 
-	<p><a href="https://twitter.com/krivlenia">Константин Кривленя</a></p>
+	<p><a target="_blank" href="https://twitter.com/krivlenia">Константин Кривленя</a></p>
 
-	<p>Компания <a href="http://www.targetprocess.com">Targetprocess</a></p>
+	<p>Компания <a target="_blank" href="https://goo.gl/nFaFyV">Targetprocess</a></p>
 </header>
 <section class="slide">
-	<div>
-		<h2 class="shout"><a target="_blank" href="https://goo.gl/ePTKan">goo.gl/ePTKan</a></h2>
-	</div>
+	<img class="cover" src="pictures/imgpsh_fullsize.jpg" alt="">
+	<h2 ><a target="_blank" style="position: absolute;
+    bottom: 110px;
+    right: 235px;
+    color: #666;text-decoration: none;background: none;" href="https://goo.gl/ePTKan">goo.gl/ePTKan</a></h2>
+
 </section>
 <section style="background: black" class="slide">
 	<img class="cover" width="75%" src="pictures/TED_logo%20(1).png" alt="TED">
@@ -328,11 +331,11 @@ function leftpad (str, len, ch) {
 	<img class="cover" src="pictures/component-inspector.gif" alt="component-inspector">
 </section>
 <section class="slide">
-	<h2 class="shout"><a href="https://www.youtube.com/watch?v=aMP6j6um4Ss&ab_channel=FrontTalksConference">Инструментирование
-		кода</a></h2>
+	<h2 class="shout" style="font-size: 70px"><a href="https://www.youtube.com/watch?v=aMP6j6um4Ss&ab_channel=FrontTalksConference">Инструментирование
+		<br>кода</a></h2>
 </section>
 <section style="background-image: url(pictures/main-bg.svg)" class="slide">
-	<img class="cover" src="pictures/logo-big-taucharts.png" alt="">
+	<a target="_blank" href="https:///taucharts.com"><img class="cover" src="pictures/logo-big-taucharts.png" alt=""></a>
 </section>
 <section class="slide">
 	<h2>
@@ -342,6 +345,54 @@ function leftpad (str, len, ch) {
 </section>
 <section class="slide">
 	<img class="cover" src="pictures/grammar.jpg" alt="">
+</section>
+<section class="slide" style="padding: 50px">
+	<pre><code style="line-height: 1.4" class="javascript">
+var chart = new tauCharts.Chart({
+	data:OscarNominees,
+	type:'line',
+	x:'Year',
+	y:'Runtime',
+	color:'isWinner',
+	size:null,
+	plugins:
+	[
+		tauCharts.api.plugins.get('trendline')(),
+	]
+});
+
+chart.renderTo('#container');
+	</code></pre>
+</section>
+<section style="padding: 50px" class="slide">
+	<pre><code style="font-size:16px;line-height: 1.4" class="javascript">
+var plot = new tauCharts.Plot({
+	...
+    unit: {
+        type: "COORDS.RECT",
+        ...,
+        frames: [
+            {
+                units: [
+                    {
+                       	...,
+                        type: "COORDS.RECT",
+                        units: [
+                            {
+                                size: "size",
+                                type: "ELEMENT.LINE",
+                                ...
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+});
+
+plot.renderTo('#target');
+	</code></pre>
 </section>
 <section class="slide">
 	<img class="cover" src="pictures/css-modules-logo.png" alt="">
@@ -427,19 +478,19 @@ element.innerHTML = '&lt;div class="' + styles.className + '"&gt;';
 	<h2 class="shout" style="font-size: 80px">Dynamic Machine Code Generation</h2>
 </section>
 <section class="slide">
-	<h2 class="shout" style="font-size: 80px">Efficient Garbage Collection</h2>
+	<h2 class="shout" style="font-size: 90px">Efficient Garbage Collection</h2>
 </section>
 <section class="slide">
 	<ul>
-		<li><a href="https://developers.google.com/v8/design">Design Elements</a></li>
-		<li class="next"><a href="http://bibliography.selflanguage.org/_static/implementation.pdf">An Efficient
+		<li><a target="_blank" href="https://developers.google.com/v8/design">Design Elements</a></li>
+		<li class="next"><a target="_blank" href="http://bibliography.selflanguage.org/_static/implementation.pdf">An Efficient
 			Implementation of Self, a Dynamically-Typed Object-Oriented Language Based on Prototypes</a></li>
-		<li class="next"><a href="http://dl.acm.org/citation.cfm?id=800017.800542">Efficient implementation of the
+		<li class="next"><a target="_blank" href="http://dl.acm.org/citation.cfm?id=800017.800542">Efficient implementation of the
 			smalltalk-80 system</a></li>
 	</ul>
 </section>
 <section class="slide">
-	<h2 class="shout"><a href="http://redux.js.org/">Redux</a></h2>
+	<h2 class="shout"><a target="_blank" href="http://redux.js.org/">Redux</a></h2>
 </section>
 <section class="slide">
 	<img class="cover" src="pictures/redux-article-3-03.svg" alt="">
@@ -449,10 +500,10 @@ element.innerHTML = '&lt;div class="' + styles.className + '"&gt;';
 		Идеи Redux
 	</h2>
 	<ul>
-		<li class="next"><a href="http://elm-lang.org/">elm</a></li>
-		<li class="next"><a href="http://martinfowler.com/bliki/CQRS.html">Command Query Responsibility Segregation
+		<li class="next"><a target="_blank" href="http://elm-lang.org/">elm</a></li>
+		<li class="next"><a target="_blank" href="http://martinfowler.com/bliki/CQRS.html">Command Query Responsibility Segregation
 			(CQRS)</a></li>
-		<li class="next"><a href="http://martinfowler.com/eaaDev/EventSourcing.html">Event Sourcing</a></li>
+		<li class="next"><a  target="_blank" href="http://martinfowler.com/eaaDev/EventSourcing.html">Event Sourcing</a></li>
 	</ul>
 </section>
 <section style="background: black" class="slide">
@@ -472,7 +523,7 @@ element.innerHTML = '&lt;div class="' + styles.className + '"&gt;';
 	saga
 </section>-->
 <section class="slide">
-	<img src="pictures/cycle-schema.svg" alt="">
+	<img class="cover" src="pictures/cycle-schema.svg" alt="">
 </section>
 <section style="padding: 50px" class="slide">
 	<pre><code style="height: 600px;line-height: 1.2;font-size: 16px" class="javascript">
@@ -528,13 +579,13 @@ Cycle.run(main, sources);
 	<img class="shout" style="width:415px" src="pictures/react.svg" alt="">
 </section>
 <section class="slide">
-	<img class="shout" src="pictures/typicalApproach.png" alt="">
+	<img class="cover" src="pictures/typicalApproach.png" alt="">
 </section>
 <section class="slide">
-	<img class="shout"  src="pictures/perfect.png" alt="">
+	<img class="cover"  src="pictures/perfect.png" alt="">
 </section>
 <section class="slide">
-	<img class="shout"  src="pictures/muzhik-bleat_50599501_orig_.jpg" alt="">
+	<img class="cover" src="pictures/muzhik-bleat_50599501_orig_.jpg" alt="">
 </section>
 <section class="slide">
 	<h2 class="shout">Проблема React</h2>
@@ -604,7 +655,7 @@ var MyForm = React.createClass({
 	<h2 class="shout">Вопросы?</h2>
 </section>
 <section class="slide">
-	<h2 class="shout"><a href="http://basisjs.com/">Basisjs</a></h2>
+	<h2 class="shout"><a target="_blank" href="http://basisjs.com/">Basisjs</a></h2>
 </section>
 <!--
     To hide progress bar from entire presentation
